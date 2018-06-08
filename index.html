@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我觉得学医救不了中国人，但学PHP可以</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://static.yeskn.com/jquery.min.js"></script>
+</head>
+<body>
+
+<img class="first" src="luxun.png" alt="">
+<img class="second" src="luxun.jpg" alt="">
+<br>
+<br>
+
+<textarea id="text" type="text" name="text" style="padding: 5px;width: 300px; border: 1px solid #ddd" >
+    我觉得学医救不了中国人
+    但学PHP可以
+</textarea>
+<br>
+
+<input id="generate" type="submit" value="生成第一句" style="padding: 5px;background: #dddddd;border-radius: 6px">
+<input id="generate2" type="submit" value="生成第二句" style="padding: 5px;background: #dddddd;border-radius: 6px">
+
+
+
+<div id="result">
+
+</div>
+
+<script>
+    $(function () {
+        $('#generate').click(function () {
+            var text = $('#text').val();
+            $.ajax({
+                method: 'POST',
+                url: '/generate.php',
+                data: {text:text},
+                success: function (data) {
+                    $('.first').attr('src', data.ret);
+                }
+            });
+        });
+
+        $('#generate2').click(function () {
+            var text = $('#text').val();
+            $.ajax({
+                method: 'POST',
+                url: '/generate.php',
+                data: {text:text},
+                success: function (data) {
+                    $('.second').attr('src', data.ret);
+                }
+            });
+        });
+    })
+</script>
+</body>
+</html>
