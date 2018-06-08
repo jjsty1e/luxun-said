@@ -8,12 +8,9 @@
 
 require_once 'vendor/autoload.php';
 
-
-// import the Intervention Image Manager Class
 use Intervention\Image\ImageManagerStatic as Image;
 
-// configure with favored image driver (gd by default)
-Image::configure(array('driver' => 'gd'));
+Image::configure(array('driver' => 'gd')); // 可以改成imagemagic（大概是这个名字吧...）
 
 $image = Image::make('luxun.png');
 
@@ -30,10 +27,8 @@ $image->text($text, 150, 290, function( $font) {
     $font->color('#fff');
     $font->align('center');
     $font->valign('top');
-//    $font->angle(45);
 });
 
-$name = 'luxun-'.time().uniqid() . '.png';
 $res = $image->encode('data-url')->getEncoded();
 
 header('Content-Type:application/json');
